@@ -77,14 +77,26 @@ allInputs.forEach(id => {
 });
 
 // --- LOGIKA EXPORT & IMPORT ---
+const settingsKeys = ['isActive', 'hideInputs', 'hideExportCSV', ...allInputs];
+
 btnExport.addEventListener('click', () => {
   chrome.storage.local.get(null, (items) => {
-    const dataStr = JSON.stringify(items, null, 2);
-    const blob = new Blob([dataStr], { type: "application/json" });
+    let csvContent = "Nama Produk,OPEX,Harga Jual,Margin\n";
+    for (let key in items) {
+      if (!settingsKeys.includes(key)) {
+        const data = items[key];
+        if (data && typeof data === 'object') {
+          const pName = key.replace(/"/g, '""');
+          csvContent += `"${pName}",${data.hpp || '0'},${data.price || '0'},${data.margin || '0'}\n`;
+        }
+      }
+    }
+    
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `Backup_Shopee_Tracker_${new Date().toISOString().slice(0, 10)}.json`;
+    a.download = `Data_Produk_Shopee_${new Date().toISOString().slice(0, 10)}.csv`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -101,18 +113,55 @@ fileImport.addEventListener('change', (e) => {
   const reader = new FileReader();
   reader.onload = function(event) {
     try {
-      const importedData = JSON.parse(event.target.result);
-      chrome.storage.local.set(importedData, () => {
+      const text = event.target.result;
+      const lines = text.split('\n');
+      const newData = {};
+      
+      if (lines.length > 0) {
+        const separator = lines[0].includes(';') ? ';' : ',';
+
+        for (let i = 1; i < lines.length; i++) {
+          const line = lines[i].trim();
+          if (!line) continue;
+          
+          let parts = [];
+          let inQuotes = false;
+          let currentPart = '';
+          for(let char of line) {
+            if (char === '"') inQuotes = !inQuotes;
+            else if (char === separator && !inQuotes) {
+              parts.push(currentPart);
+              currentPart = '';
+            } else {
+              currentPart += char;
+            }
+          }
+          parts.push(currentPart);
+
+          if (parts.length >= 4) {
+            let name = parts[0].trim();
+            if (name.startsWith('"') && name.endsWith('"')) name = name.slice(1, -1).replace(/""/g, '"');
+            
+            let hpp = parts[1].replace(/[^0-9]/g, '') || "0";
+            let price = parts[2].replace(/[^0-9]/g, '') || "0";
+            let margin = parts[3].replace(/[^0-9]/g, '') || "0";
+            
+            newData[name] = { hpp, price, margin };
+          }
+        }
+      }
+      
+      chrome.storage.local.set(newData, () => {
         btnImport.innerText = "✅ Sukses!";
         btnImport.style.background = "#52c41a";
         btnImport.style.color = "white";
         setTimeout(() => {
-          alert("Data berhasil direstore! Silakan Refresh halaman Shopee Anda.");
+          alert("Data Produk berhasil di-import! Silakan Refresh halaman Shopee Anda.");
           location.reload(); 
         }, 500);
       });
     } catch (err) {
-      alert("Gagal Import! Pastikan file yang dipilih adalah file Backup berformat .json yang benar.");
+      alert("Gagal Import! Pastikan format CSV sesuai (Nama Produk, OPEX, Harga Jual, Margin).");
       fileImport.value = ""; 
     }
   };

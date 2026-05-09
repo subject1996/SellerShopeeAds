@@ -205,8 +205,14 @@ function updateShopeeAdsDashboard() {
       if (productInfoArea) {
         let container = productInfoArea.querySelector('.custom-shopee-extension-group');
 
+        if (container && container.dataset.product !== namaProduk) {
+          container.remove();
+          container = null;
+        }
+
         if (!container) {
           container = document.createElement('div');
+          container.dataset.product = namaProduk;
           container.className = 'custom-shopee-extension-group custom-extension-added';
           container.style.cssText = "margin-top: 8px; display: flex; align-items: center; gap: 5px; font-family: ShopeeSans, Roboto, sans-serif;";
 
@@ -275,6 +281,10 @@ function updateShopeeAdsDashboard() {
               inOpex.value = formatRupiah(res[namaProduk].hpp || "");
               inPrice.value = formatRupiah(res[namaProduk].price || "");
               inMargin.value = formatRupiah(res[namaProduk].margin || "");
+            } else {
+              chrome.storage.local.set({
+                [namaProduk]: { hpp: "0", price: "0", margin: "0" }
+              });
             }
           });
 
