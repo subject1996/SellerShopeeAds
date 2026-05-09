@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "Shopee ROAS & HPP Tracker",
+  "version": "1.2",
+  "permissions": ["storage"],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://seller.shopee.co.id/*"],
+      "js": ["content.js"]
+    }
+  ]
+}
