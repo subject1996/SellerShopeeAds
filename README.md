@@ -1,4 +1,4 @@
-# 🛒 Shopee ROAS & OPEX Tracker - Chrome Extension
+# 🛒 Shopee Ads Tracker - Chrome Extension
 
 Ekstensi Google Chrome khusus untuk **Seller Shopee** dan **Advertiser** yang berfungsi menyulap *dashboard* Shopee Ads bawaan menjadi pusat analisis data yang lebih cerdas, *real-time*, dan mendalam. 
 
@@ -33,7 +33,7 @@ Membantu pengiklan untuk segera mengetahui apakah sebuah kampanye iklan sedang m
 Karena ekstensi ini belum (atau sedang dalam proses) dirilis di Chrome Web Store, Anda dapat menginstalnya secara manual di *browser* Chrome atau Edge (berbasis Chromium) Anda:
 
 1. **Download Repository**
-   Klik tombol `Code` hijau di repositori ini, lalu pilih **Download ZIP**. (Atau *clone* via terminal: `git clone https://github.com/username-anda/nama-repo.git`)
+   Klik tombol `Code` hijau di repositori ini, lalu pilih **Download ZIP**. (Atau *clone* via terminal: `git clone https://github.com/subject1996/SellerShopeeAds.git`)
 2. **Ekstrak File**
    Ekstrak file `.zip` yang baru saja diunduh ke dalam sebuah folder (misal: `Shopee-Tracker-Ext`).
 3. **Buka Halaman Ekstensi Chrome**
