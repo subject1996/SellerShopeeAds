@@ -10,21 +10,31 @@ Membantu pengiklan untuk segera mengetahui apakah sebuah kampanye iklan sedang m
 
 1. **📊 Manajemen OPEX, Harga Jual, dan Margin**
    Input struktur biaya (OPEX, Harga Jual, Margin) langsung di bawah nama produk pada halaman Shopee Ads. Data tersimpan otomatis secara lokal di *browser* Anda (*Local Storage*).
-2. **🎯 Strategi Target ROAS Otomatis**
+   <img width="405" height="47" alt="image" src="https://github.com/user-attachments/assets/cb9f658a-1010-4ff0-adef-875b94f4435c" />
+
+3. **🎯 Strategi Target ROAS Otomatis**
    Menghitung **ROAS Impas** (Batas Balik Modal) dan memberikan rekomendasi Target ROAS secara instan berdasarkan profil risiko Anda (*Saving, Konservatif, Moderat, Agresif, Sangat Agresif*).
-3. **🚦 Indikator Kesehatan ROAS**
+   <img width="322" height="293" alt="image" src="https://github.com/user-attachments/assets/f86f2f74-f60c-4641-a3e7-e90105731759" />
+
+4. **🚦 Indikator Kesehatan ROAS**
    Melabeli ROAS aktual dengan warna: Hijau (**BAGUS**) jika memenuhi target, atau Merah (**KURANG**) jika di bawah target untuk pengambilan keputusan optimasi yang lebih cepat.
-4. **📉 Analisis Biaya Iklan & CPO (Cost Per Order)**
+   <img width="311" height="227" alt="image" src="https://github.com/user-attachments/assets/0a4ca974-ae5c-4946-9d26-32b622e8a225" />
+
+5. **📉 Analisis Biaya Iklan & CPO (Cost Per Order)**
    Menghitung metrik krusial untuk mencegah kebangkrutan:
    * Menghitung nilai CPO dan persentasenya terhadap Harga Jual.
    * Menghitung **Profit Aktual (Margin - CPO)**.
    * Label status otomatis (🟢 SEHAT, 🟡 WASPADA, 🔴 BAHAYA) yang batas persentasenya bisa disesuaikan.
-5. **👁️ Analisis Kualitas Tayangan (CTR to Conversion)**
+   <img width="353" height="343" alt="image" src="https://github.com/user-attachments/assets/a86fcd5c-b32b-4a16-88f5-b20a3c6e2d4c" />
+
+6. **👁️ Analisis Kualitas Tayangan (CTR to Conversion)**
    Mendiagnosis masalah tayangan iklan dengan menghitung rasio **Order per 1.000 Tayang**. Dilengkapi label status untuk melihat efektivitas algoritma iklan.
-6. **📋 Generator Laporan 1-Klik (Tombol SUMMARY)**
+   <img width="305" height="343" alt="image" src="https://github.com/user-attachments/assets/4d85daa2-376b-4ed5-be26-f6ceac4e3919" />
+
+7. **📋 Generator Laporan 1-Klik (Tombol SUMMARY)**
    Mengompilasi seluruh data performa iklan suatu produk menjadi format teks ringkas dan rapi ke dalam *clipboard*, siap untuk di-*paste* ke WhatsApp atau grup pelaporan.
-7. **💾 Backup & Restore System**
-   Simpan (*Export*) atau muat ulang (*Import*) seluruh konfigurasi strategi dan data OPEX/Margin ke dalam file `.json` dengan mudah.
+8. **💾 Backup & Restore System**
+   Simpan (*Export*) atau muat ulang (*Import*) seluruh konfigurasi strategi dan data OPEX/Margin ke dalam file `.csv` dengan mudah.
 
 ---
 
