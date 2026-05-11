@@ -37,6 +37,145 @@ function parseShopeeNumber(text, isRupiah = false) {
   return (parseFloat(cleanText) || 0) * multiplier;
 }
 
+const i18nContent = {
+  en: {
+    exportBtn: "📥 Export Summary to CSV",
+    csvHeader: "Product Name,OPEX,Selling Price,Margin,Target ROAS,Real ROAS,ROAS Status,Impressions,Clicks,Conversions,Sales,Cost,Cost Per Order Status,Imp to Order Status,CPM,Max Healthy CPM,CPM Status\n",
+    opexPlaceholder: "OPEX",
+    pricePlaceholder: "Price",
+    marginPlaceholder: "Margin",
+    summaryBtn: "SUMMARY",
+    tipOpex: "Operational Cost or Marketplace Commission",
+    tipPrice: "Product Selling Price",
+    tipMargin: "Margin (Net Profit)",
+    roasStrategy: "ROAS Strategy",
+    roasImpas: "BREAK-EVEN ROAS:",
+    sa: "Very Aggressive",
+    a: "Aggressive",
+    m: "Moderate",
+    k: "Conservative",
+    s: "Saving",
+    pluginBy: "Plugin by Fitroh Satrio",
+    statusNoData: "NO DATA",
+    statusMarginEmpty: "EMPTY MARGIN",
+    statusHealthy: "HEALTHY",
+    statusWarning: "WARNING",
+    statusDanger: "DANGER",
+    statusSaving: "Saving",
+    statusConservative: "Conservative",
+    statusModerate: "Moderate",
+    statusAggressive: "Aggressive",
+    statusVeryAggressive: "Very Aggressive",
+    statusBreakEven: "Break Even Only",
+    statusLoss: "Loss",
+    statusOpexEmpty: "OPEX/Margin not filled",
+    statusPriceEmpty: "EMPTY SELLING PRICE",
+    statusPriceEmpty2: "SELLING PRICE?",
+    statusNoCostYet: "NO COST YET",
+    statusSafe: "SAFE",
+    statusDanger0Conv: "DANGER (0 CONVERSION)",
+    statusNotAired: "NOT AIRED",
+    status0Aired: "0 IMPRESSIONS",
+    subProfit: "(Profit & Stable)",
+    subBep: "(Thin Profit / BEP)",
+    subLoss: "(Loss Trigger)",
+    analysisRoas: "Current ROAS Analysis",
+    analysisCpo: "Ad Cost Analysis (CPO)",
+    analysisImp: "Impression Conversion Analysis",
+    lblTargetRoas: "Target ROAS:",
+    lblRoasActual: "Current ROAS:",
+    lblStatus: "Status:",
+    lblAdCost: "Ad Cost:",
+    lblConversion: "Conversions (Orders):",
+    lblCpo: "Cost Per Order (CPO):",
+    lblProductMargin: "Product Margin:",
+    lblMarginCpo: "Margin - CPO:",
+    lblRatioPrice: "Ratio to Selling Price:",
+    lblTotalImp: "Total Impressions (Imp):",
+    lblTotalOrder: "Total Orders:",
+    lblOrder1k: "Orders per 1K Imp:",
+    lblCost1k: "Cost per 1K Imp (CPM):",
+    lblMaxCpm: "Max CPM (Order/1K × Margin):",
+    lblStatusRoas: "ROAS Status:",
+    lblStatusCpo: "Cost Per Order Status:",
+    lblStatusIto: "Imp to Order Status:",
+    lblStatusCpm: "CPM Status:",
+    perfSummary: "Performance Summary",
+    lblSellPrice: "Selling Price:",
+    lblClicks: "Clicks:",
+    lblSales: "Sales:"
+  },
+  id: {
+    exportBtn: "📥 Export Summary to CSV",
+    csvHeader: "Nama Produk,OPEX,Harga Jual,Margin,Target ROAS,ROAS Real,Status ROAS,Dilihat,Klik,Konversi,Penjualan,Biaya,Status Cost Per Order,Status Imp to Order,CPM,Maks CPM Sehat,Status CPM\n",
+    opexPlaceholder: "OPEX",
+    pricePlaceholder: "Jual",
+    marginPlaceholder: "Margin",
+    summaryBtn: "SUMMARY",
+    tipOpex: "Biaya Operasional atau Komisi Marketplace",
+    tipPrice: "Harga Jual Produk",
+    tipMargin: "Margin (Keuntungan Bersih)",
+    roasStrategy: "Strategi ROAS",
+    roasImpas: "ROAS IMPAS:",
+    sa: "Sangat Agresif",
+    a: "Agresif",
+    m: "Moderat",
+    k: "Konservatif",
+    s: "Saving",
+    pluginBy: "Plugin by Fitroh Satrio",
+    statusNoData: "NO DATA",
+    statusMarginEmpty: "MARGIN KOSONG",
+    statusHealthy: "SEHAT",
+    statusWarning: "WASPADA",
+    statusDanger: "BAHAYA",
+    statusSaving: "Saving",
+    statusConservative: "Konservatif",
+    statusModerate: "Moderat",
+    statusAggressive: "Agresif",
+    statusVeryAggressive: "Sangat Agresif",
+    statusBreakEven: "Hanya Impas",
+    statusLoss: "Boncos",
+    statusOpexEmpty: "OPEX/Margin belum diisi",
+    statusPriceEmpty: "HARGA JUAL KOSONG",
+    statusPriceEmpty2: "HARGA JUAL?",
+    statusNoCostYet: "BELUM ADA BIAYA",
+    statusSafe: "AMAN",
+    statusDanger0Conv: "BAHAYA (0 KONVERSI)",
+    statusNotAired: "BELUM TAYANG",
+    status0Aired: "0 TAYANG",
+    subProfit: "(Profit & Stabil)",
+    subBep: "(Untung Tipis / BEP)",
+    subLoss: "(Pemicu Boncos)",
+    analysisRoas: "Analisis ROAS Saat Ini",
+    analysisCpo: "Analisis Biaya Iklan (CPO)",
+    analysisImp: "Analisis Konversi Tayangan",
+    lblTargetRoas: "Target ROAS:",
+    lblRoasActual: "ROAS Saat Ini:",
+    lblStatus: "Status:",
+    lblAdCost: "Biaya Iklan:",
+    lblConversion: "Konversi (Pesanan):",
+    lblCpo: "Cost Per Order (CPO):",
+    lblProductMargin: "Margin Produk:",
+    lblMarginCpo: "Margin - CPO:",
+    lblRatioPrice: "Rasio thd Harga Jual:",
+    lblTotalImp: "Total Tayang (Imp):",
+    lblTotalOrder: "Total Order:",
+    lblOrder1k: "Order per 1K Tayang:",
+    lblCost1k: "Biaya per 1K Tayang (CPM):",
+    lblMaxCpm: "Maks. CPM (Order/1K × Margin):",
+    lblStatusRoas: "Status ROAS:",
+    lblStatusCpo: "Status Cost Per Order:",
+    lblStatusIto: "Status Imp to Order:",
+    lblStatusCpm: "Status CPM:",
+    perfSummary: "Rangkuman Performa",
+    lblSellPrice: "Harga Jual:",
+    lblClicks: "Klik:",
+    lblSales: "Penjualan:"
+  }
+};
+let currentI18nDict = i18nContent['en'];
+const dict = new Proxy({}, { get: (target, prop) => currentI18nDict[prop] });
+
 function updateShopeeAdsDashboard() {
   if (!chrome.runtime?.id) return;
 
@@ -44,6 +183,7 @@ function updateShopeeAdsDashboard() {
     'isActive',
     'hideInputs',
     'hideExportCSV',
+    'extLang',
     'm_s_agresif', 'm_agresif', 'm_moderat', 'm_konservatif', 'm_saving',
     'cpo_sehat', 'cpo_waspada',
     'ito_sehat', 'ito_waspada'
@@ -54,6 +194,8 @@ function updateShopeeAdsDashboard() {
     const isActive = settings.isActive !== false;
     const isHidden = settings.hideInputs === true;
     const isExportHidden = settings.hideExportCSV === true;
+    const lang = settings.extLang || 'en';
+    currentI18nDict = i18nContent[lang];
 
     if (!isActive) {
       document.querySelectorAll('.custom-extension-added').forEach(el => el.remove());
@@ -80,10 +222,8 @@ function updateShopeeAdsDashboard() {
 
     const protectionColor = "#26b0a0";
 
-    // Desain Premium Popup (Seperti versi awal Anda)
     const popupStyle = `position: fixed; z-index: 1000005; background: white; border: 1px solid #e5e5e5; border-radius: 4px; padding: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.1); display: none; width: 230px; color: #333; font-size: 12px; font-family: inherit; pointer-events: none;`;
 
-    // --- GLOBAL TOOLTIP ---
     let globalAnalysisTooltip = document.getElementById('global-analysis-roas-tooltip');
     if (!globalAnalysisTooltip) {
       globalAnalysisTooltip = document.createElement('div');
@@ -93,13 +233,12 @@ function updateShopeeAdsDashboard() {
       document.body.appendChild(globalAnalysisTooltip);
     }
 
-    // --- CSV EXPORT BUTTON ---
     let csvExportBtn = document.getElementById('global-csv-export-btn');
     if (!csvExportBtn) {
       csvExportBtn = document.createElement('div');
       csvExportBtn.id = 'global-csv-export-btn';
       csvExportBtn.className = 'custom-extension-added';
-      csvExportBtn.innerText = '📥 Export Summary to CSV';
+      csvExportBtn.innerText = dict.exportBtn;
       csvExportBtn.style.cssText = `position: fixed; z-index: 1000000; bottom: 20px; right: 20px; background: ${protectionColor}; color: white; padding: 10px 16px; border-radius: 20px; font-size: 12px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.2); transition: transform 0.2s; font-family: sans-serif;`;
 
       csvExportBtn.addEventListener('mouseenter', () => csvExportBtn.style.transform = 'scale(1.05)');
@@ -109,7 +248,7 @@ function updateShopeeAdsDashboard() {
         const getVal = (cell) => cell ? cell.querySelector('.report-format-number')?.innerText || '0' : '0';
         const getValNum = (cell) => parseShopeeNumber(getVal(cell), true);
 
-        let csvContent = "Nama Produk,OPEX,Harga Jual,Margin,Target ROAS,ROAS Real,Status ROAS,Dilihat,Klik,Konversi,Penjualan,Biaya,Status Cost Per Order,Status Imp to Order,CPM,Maks CPM Sehat,Status CPM\n";
+        let csvContent = dict.csvHeader;
 
         const mRows = document.querySelectorAll('.eds-table__main-body tr.eds-table__row');
         const fRows = document.querySelectorAll('.eds-table__fix-body tr.eds-table__row');
@@ -145,10 +284,10 @@ function updateShopeeAdsDashboard() {
           const orderPer1kNum = impValNum > 0 ? (orderValNum / impValNum) * 1000 : 0;
           const targetCpmNum = orderPer1kNum * marginValNum;
 
-          let cpmStatusText = "NO DATA";
-          if (marginValNum === 0) cpmStatusText = "MARGIN KOSONG";
+          let cpmStatusText = dict.statusNoData;
+          if (marginValNum === 0) cpmStatusText = dict.statusMarginEmpty;
           else if (impValNum > 0) {
-            cpmStatusText = (cpmValNum < targetCpmNum) ? "SEHAT" : "BAHAYA";
+            cpmStatusText = (cpmValNum < targetCpmNum) ? dict.statusHealthy : dict.statusDanger;
           }
 
           const _opex = inOpex.replace(/\./g, '');
@@ -179,7 +318,8 @@ function updateShopeeAdsDashboard() {
       });
       document.body.appendChild(csvExportBtn);
     }
-
+    
+    csvExportBtn.innerText = dict.exportBtn;
     csvExportBtn.style.display = isExportHidden ? 'none' : 'block';
 
     const mainRows = document.querySelectorAll('.eds-table__main-body tr.eds-table__row');
@@ -200,7 +340,6 @@ function updateShopeeAdsDashboard() {
       const impCell = row.querySelector('[data-testid*="column-broadImpression"]') || row.querySelector('[data-testid*="column-exactImpression"]') || row.querySelector('[data-testid*="column-impression"]');
       const clickCell = row.querySelector('[data-testid*="column-broadClick"]') || row.querySelector('[data-testid*="column-exactClick"]') || row.querySelector('[data-testid*="column-click"]');
 
-      // --- BAGIAN A: INPUT GROUP & SUMMARY ---
       const productInfoArea = fixedRow.querySelector('.info-text');
       if (productInfoArea) {
         let container = productInfoArea.querySelector('.custom-shopee-extension-group');
@@ -225,12 +364,12 @@ function updateShopeeAdsDashboard() {
 
           container.innerHTML = `
             <div class="inputs-sub-group" style="display: flex; gap: 5px; align-items: center;">
-               ${createInputHTML('input-hpp-field', 'OPEX')}
-               ${createInputHTML('input-price-field', 'Jual')}
-               ${createInputHTML('input-margin-field', 'Margin')}
+               ${createInputHTML('input-hpp-field', dict.opexPlaceholder)}
+               ${createInputHTML('input-price-field', dict.pricePlaceholder)}
+               ${createInputHTML('input-margin-field', dict.marginPlaceholder)}
             </div>
             <div class="ai-summary-btn" style="background: ${protectionColor}; color: white; font-size: 10px; font-weight: 500; padding: 0 10px; height: 22px; line-height: 22px; border-radius: 2px; cursor: pointer; white-space: nowrap; transition: background 0.2s;">
-              SUMMARY
+              ${dict.summaryBtn}
             </div>
           `;
           productInfoArea.appendChild(container);
@@ -240,7 +379,6 @@ function updateShopeeAdsDashboard() {
           const inMargin = container.querySelector('.input-margin-field');
           const summaryBtn = container.querySelector('.ai-summary-btn');
 
-          // Efek Fokus Input seperti versi lama
           const addFocusEffect = (input) => {
             const wrap = input.parentElement;
             input.onfocus = () => wrap.style.borderColor = "#ee4d2d";
@@ -260,10 +398,10 @@ function updateShopeeAdsDashboard() {
           const tipPrice = createMiniTip(protectionColor);
           const tipMargin = createMiniTip('#ee4d2d');
 
-          const setupHover = (trigger, tooltip, text) => {
+          const setupHover = (trigger, tooltip, textFn) => {
             const wrap = trigger.parentElement;
             wrap.addEventListener('mouseenter', () => {
-              tooltip.innerText = text;
+              tooltip.innerText = textFn();
               tooltip.style.display = 'block';
               const r = wrap.getBoundingClientRect();
               tooltip.style.top = (r.top - 32) + 'px';
@@ -272,9 +410,9 @@ function updateShopeeAdsDashboard() {
             wrap.addEventListener('mouseleave', () => tooltip.style.display = 'none');
           };
 
-          setupHover(inOpex, tipOpex, "Biaya Operasional atau Komisi Marketplace");
-          setupHover(inPrice, tipPrice, "Harga Jual Produk");
-          setupHover(inMargin, tipMargin, "Margin (Keuntungan Bersih)");
+          setupHover(inOpex, tipOpex, () => dict.tipOpex);
+          setupHover(inPrice, tipPrice, () => dict.tipPrice);
+          setupHover(inMargin, tipMargin, () => dict.tipMargin);
 
           chrome.storage.local.get([namaProduk], (res) => {
             if (res[namaProduk]) {
@@ -331,47 +469,46 @@ function updateShopeeAdsDashboard() {
             const orderPer1kNum = impValNum > 0 ? (orderValNum / impValNum) * 1000 : 0;
             const targetCpmNum = orderPer1kNum * marginValNum;
 
-            let cpmStatusText = "NO DATA";
+            let cpmStatusText = dict.statusNoData;
             let cpmColor = "#ccc";
 
             if (marginValNum === 0) {
-              cpmStatusText = "MARGIN KOSONG";
+              cpmStatusText = dict.statusMarginEmpty;
               cpmColor = "#888";
             } else if (impValNum > 0) {
               if (cpmValNum < targetCpmNum) {
-                cpmStatusText = "SEHAT";
+                cpmStatusText = dict.statusHealthy;
                 cpmColor = "#52c41a";
               } else {
-                cpmStatusText = "BAHAYA";
+                cpmStatusText = dict.statusDanger;
                 cpmColor = "#ff4d4f";
               }
             }
 
-            // Mengembalikan desain Rangkuman Performa versi awal Anda
             summaryTooltip.innerHTML = `
-              <div style="font-weight: bold; font-size: 13px; margin-bottom: 10px; color: ${protectionColor}; border-bottom: 1px solid #f5f5f5; padding-bottom: 5px;">Rangkuman Performa</div>
-              <div style="display: flex; justify-content: space-between; margin-bottom: 4px;"><span>OPEX:</span> <b>Rp${inOpex.value || '0'}</b></div>
-              <div style="display: flex; justify-content: space-between; margin-bottom: 4px;"><span>Harga Jual:</span> <b>Rp${inPrice.value || '0'}</b></div>
-              <div style="display: flex; justify-content: space-between; margin-bottom: 4px;"><span>Margin:</span> <b style="color: #ee4d2d;">Rp${inMargin.value || '0'}</b></div>
+              <div style="font-weight: bold; font-size: 13px; margin-bottom: 10px; color: ${protectionColor}; border-bottom: 1px solid #f5f5f5; padding-bottom: 5px;">${dict.perfSummary}</div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 4px;"><span>${dict.opexPlaceholder}:</span> <b>Rp${inOpex.value || '0'}</b></div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 4px;"><span>${dict.lblSellPrice}</span> <b>Rp${inPrice.value || '0'}</b></div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 4px;"><span>${dict.marginPlaceholder}:</span> <b style="color: #ee4d2d;">Rp${inMargin.value || '0'}</b></div>
               
               <div style="background: #fcfcfc; padding: 6px; border-radius: 2px; margin-bottom: 8px;">
-                <div style="display: flex; justify-content: space-between; align-items: center; font-size: 11px;"><span>Status ROAS:</span> <b style="color: white; background: ${roasColor}; padding: 2px 6px; border-radius: 3px;">${roasStatus}</b></div>
-                <div style="display: flex; justify-content: space-between; align-items: center; font-size: 11px; margin-top: 5px;"><span>Status Cost Per Order:</span> <b style="color: white; background: ${cpoColor}; padding: 2px 6px; border-radius: 3px;">${cpoStatus}</b></div>
-                <div style="display: flex; justify-content: space-between; align-items: center; font-size: 11px; margin-top: 5px;"><span>Status Imp to Order:</span> <b style="color: white; background: ${impColor}; padding: 2px 6px; border-radius: 3px;">${impStatus}</b></div>
-                <div style="display: flex; justify-content: space-between; align-items: center; font-size: 11px; margin-top: 5px;"><span>Status CPM:</span> <b style="color: white; background: ${cpmColor}; padding: 2px 6px; border-radius: 3px;">${cpmStatusText}</b></div>
+                <div style="display: flex; justify-content: space-between; align-items: center; font-size: 11px;"><span>${dict.lblStatusRoas}</span> <b style="color: white; background: ${roasColor}; padding: 2px 6px; border-radius: 3px;">${roasStatus}</b></div>
+                <div style="display: flex; justify-content: space-between; align-items: center; font-size: 11px; margin-top: 5px;"><span>${dict.lblStatusCpo}</span> <b style="color: white; background: ${cpoColor}; padding: 2px 6px; border-radius: 3px;">${cpoStatus}</b></div>
+                <div style="display: flex; justify-content: space-between; align-items: center; font-size: 11px; margin-top: 5px;"><span>${dict.lblStatusIto}</span> <b style="color: white; background: ${impColor}; padding: 2px 6px; border-radius: 3px;">${impStatus}</b></div>
+                <div style="display: flex; justify-content: space-between; align-items: center; font-size: 11px; margin-top: 5px;"><span>${dict.lblStatusCpm}</span> <b style="color: white; background: ${cpmColor}; padding: 2px 6px; border-radius: 3px;">${cpmStatusText}</b></div>
               </div>
 
-              <div style="display: flex; justify-content: space-between; margin-bottom: 4px;"><span>Target ROAS:</span> <b>${targetRoasEl ? targetRoasEl.innerText : '0'}</b></div>
-              <div style="display: flex; justify-content: space-between; margin-bottom: 8px;"><span>ROAS Real:</span> <b>${getVal(roasActualCell)}</b></div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 4px;"><span>${dict.lblTargetRoas}</span> <b>${targetRoasEl ? targetRoasEl.innerText : '0'}</b></div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 8px;"><span>${dict.lblRoasActual}</span> <b>${getVal(roasActualCell)}</b></div>
               
               <div style="background: #fcfcfc; padding: 6px; border-radius: 2px;">
-                <div style="display: flex; justify-content: space-between; font-size: 11px;"><span>Dilihat:</span> <span>${getVal(impCell)}</span></div>
-                <div style="display: flex; justify-content: space-between; font-size: 11px;"><span>Klik:</span> <span>${getVal(clickCell)}</span></div>
-                <div style="display: flex; justify-content: space-between; font-size: 11px;"><span>Konversi:</span> <span>${getVal(orderCell)}</span></div>
+                <div style="display: flex; justify-content: space-between; font-size: 11px;"><span>${dict.lblTotalImp}</span> <span>${getVal(impCell)}</span></div>
+                <div style="display: flex; justify-content: space-between; font-size: 11px;"><span>${dict.lblClicks}</span> <span>${getVal(clickCell)}</span></div>
+                <div style="display: flex; justify-content: space-between; font-size: 11px;"><span>${dict.lblConversion}</span> <span>${getVal(orderCell)}</span></div>
               </div>
               
-              <div style="display: flex; justify-content: space-between; margin-top: 8px; margin-bottom: 4px;"><span>Penjualan:</span> <b>${getVal(gmvCell)}</b></div>
-              <div style="display: flex; justify-content: space-between;"><span>Biaya:</span> <b>${getVal(costCell)}</b></div>
+              <div style="display: flex; justify-content: space-between; margin-top: 8px; margin-bottom: 4px;"><span>${dict.lblSales}</span> <b>${getVal(gmvCell)}</b></div>
+              <div style="display: flex; justify-content: space-between;"><span>${dict.lblAdCost}</span> <b>${getVal(costCell)}</b></div>
             `;
             summaryTooltip.style.display = 'block';
             const rect = summaryBtn.getBoundingClientRect();
@@ -382,23 +519,28 @@ function updateShopeeAdsDashboard() {
 
           summaryBtn.addEventListener('click', (e) => {
             e.stopPropagation();
-            const cleanText = summaryTooltip.innerText.replace("Rangkuman Performa\n", "");
+            const cleanText = summaryTooltip.innerText.replace(dict.perfSummary + "\n", "");
             navigator.clipboard.writeText(`Produk: ${namaProduk}\n${cleanText}`).then(() => {
               summaryBtn.innerText = 'COPIED';
-              summaryBtn.style.background = "#52c41a"; // Warna hijau berhasil copy
+              summaryBtn.style.background = "#52c41a"; 
               setTimeout(() => {
-                summaryBtn.innerText = 'SUMMARY';
-                summaryBtn.style.background = protectionColor; // Kembali semula
+                summaryBtn.innerText = dict.summaryBtn;
+                summaryBtn.style.background = protectionColor; 
               }, 1000);
             });
           });
+        } else {
+           // Update translations of inputs for existing containers if language changes
+           container.querySelector('.input-hpp-field').placeholder = dict.opexPlaceholder;
+           container.querySelector('.input-price-field').placeholder = dict.pricePlaceholder;
+           container.querySelector('.input-margin-field').placeholder = dict.marginPlaceholder;
+           container.querySelector('.ai-summary-btn').innerText = dict.summaryBtn;
         }
 
         const group = container.querySelector('.inputs-sub-group');
         if (group) group.style.display = isHidden ? 'none' : 'flex';
       }
 
-      // --- BAGIAN B: STRATEGY BADGE ('S') ---
       if (targetRoasEl) {
         const targetRoasCellNode = targetRoasEl.closest('td');
         if (targetRoasCellNode && !targetRoasCellNode.querySelector('.target-roas-btn')) {
@@ -420,15 +562,15 @@ function updateShopeeAdsDashboard() {
 
             roasTooltip.innerHTML = `
               <div style="font-weight: bold; font-size: 13px; margin-bottom: 10px; color: ${protectionColor}; border-bottom: 1px solid #f5f5f5; padding-bottom: 5px; display: flex; align-items: center; gap: 5px;">
-                <span>🎯</span> Strategi ROAS
+                <span>🎯</span> ${dict.roasStrategy}
               </div>
-              <div style="display: flex; justify-content: space-between; margin-bottom: 4px;"><span>ROAS IMPAS:</span> <b>${roasImpas}</b></div>
-              <div style="display: flex; justify-content: space-between; margin-bottom: 4px;"><span>Sangat Agresif (x${mult.sa}):</span> <b>${(roasImpas * mult.sa).toFixed(2)}</b></div>
-              <div style="display: flex; justify-content: space-between; margin-bottom: 4px;"><span>Agresif (x${mult.a}):</span> <b>${(roasImpas * mult.a).toFixed(2)}</b></div>
-              <div style="display: flex; justify-content: space-between; margin-bottom: 4px;"><span>Moderat (x${mult.m}):</span> <b>${(roasImpas * mult.m).toFixed(2)}</b></div>
-              <div style="display: flex; justify-content: space-between; margin-bottom: 4px;"><span>Konservatif (x${mult.k}):</span> <b>${(roasImpas * mult.k).toFixed(2)}</b></div>
-              <div style="display: flex; justify-content: space-between; margin-bottom: 10px;"><span>Saving (x${mult.s}):</span> <b>${(roasImpas * mult.s).toFixed(2)}</b></div>
-              <div style="font-size: 9px; color: #ccc; text-align: center; border-top: 1px solid #f5f5f5; padding-top: 6px;">Plugin by Fitroh Satrio</div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 4px;"><span>${dict.roasImpas}</span> <b>${roasImpas}</b></div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 4px;"><span>${dict.sa} (x${mult.sa}):</span> <b>${(roasImpas * mult.sa).toFixed(2)}</b></div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 4px;"><span>${dict.a} (x${mult.a}):</span> <b>${(roasImpas * mult.a).toFixed(2)}</b></div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 4px;"><span>${dict.m} (x${mult.m}):</span> <b>${(roasImpas * mult.m).toFixed(2)}</b></div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 4px;"><span>${dict.k} (x${mult.k}):</span> <b>${(roasImpas * mult.k).toFixed(2)}</b></div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 10px;"><span>${dict.s} (x${mult.s}):</span> <b>${(roasImpas * mult.s).toFixed(2)}</b></div>
+              <div style="font-size: 9px; color: #ccc; text-align: center; border-top: 1px solid #f5f5f5; padding-top: 6px;">${dict.pluginBy}</div>
             `;
 
             roasTooltip.style.display = 'block';
@@ -440,7 +582,6 @@ function updateShopeeAdsDashboard() {
         }
       }
 
-      // --- BAGIAN C: STATUS BADGE ROAS ---
       if (targetRoasEl && roasActualCell) {
         let statusBadge = roasActualCell.querySelector('.roas-status-badge');
 
@@ -458,32 +599,32 @@ function updateShopeeAdsDashboard() {
             const margin = parseFloat(fixedRow.querySelector('.input-margin-field')?.value.replace(/\./g, "")) || 0;
             const roasImpas = (jual > 0 && margin > 0) ? (jual / margin) : 0;
 
-            let currentStatusText = "Belum Ada Data";
+            let currentStatusText = dict.statusNoData;
             let statusColor = "#ccc";
 
             if (actualVal > 0 && roasImpas > 0) {
-              if (actualVal >= roasImpas * mult.s) { currentStatusText = "Saving"; statusColor = "#52c41a"; }
-              else if (actualVal >= roasImpas * mult.k) { currentStatusText = "Konservatif"; statusColor = "#52c41a"; }
-              else if (actualVal >= roasImpas * mult.m) { currentStatusText = "Moderat"; statusColor = "#1890ff"; }
-              else if (actualVal >= roasImpas * mult.a) { currentStatusText = "Agresif"; statusColor = "#faad14"; }
-              else if (actualVal >= roasImpas * mult.sa) { currentStatusText = "Sangat Agresif"; statusColor = "#faad14"; }
-              else if (actualVal >= roasImpas) { currentStatusText = "Hanya Impas"; statusColor = "#fa541c"; }
-              else { currentStatusText = "Boncos"; statusColor = "#ff4d4f"; }
+              if (actualVal >= roasImpas * mult.s) { currentStatusText = dict.statusSaving; statusColor = "#52c41a"; }
+              else if (actualVal >= roasImpas * mult.k) { currentStatusText = dict.statusConservative; statusColor = "#52c41a"; }
+              else if (actualVal >= roasImpas * mult.m) { currentStatusText = dict.statusModerate; statusColor = "#1890ff"; }
+              else if (actualVal >= roasImpas * mult.a) { currentStatusText = dict.statusAggressive; statusColor = "#faad14"; }
+              else if (actualVal >= roasImpas * mult.sa) { currentStatusText = dict.statusVeryAggressive; statusColor = "#faad14"; }
+              else if (actualVal >= roasImpas) { currentStatusText = dict.statusBreakEven; statusColor = "#fa541c"; }
+              else { currentStatusText = dict.statusLoss; statusColor = "#ff4d4f"; }
             } else if (actualVal > 0 && roasImpas === 0) {
-              currentStatusText = "OPEX/Margin belum diisi";
+              currentStatusText = dict.statusOpexEmpty;
               statusColor = "#888";
             }
 
             globalAnalysisTooltip.innerHTML = `
               <div style="font-weight: bold; font-size: 13px; margin-bottom: 10px; color: ${protectionColor}; border-bottom: 1px solid #f5f5f5; padding-bottom: 5px; display: flex; align-items: center; gap: 5px;">
-                <span>📊</span> Analisis ROAS Saat Ini
+                <span>📊</span> ${dict.analysisRoas}
               </div>
-              <div style="display: flex; justify-content: space-between; margin-bottom: 4px;"><span>Target ROAS:</span> <b>${targetVal.toFixed(2)}</b></div>
-              <div style="display: flex; justify-content: space-between; margin-bottom: 4px;"><span>ROAS Impas:</span> <b>${roasImpas.toFixed(2)}</b></div>
-              <div style="display: flex; justify-content: space-between; margin-bottom: 8px;"><span>ROAS Saat Ini:</span> <b style="color: ${protectionColor};">${actualVal.toFixed(2)}</b></div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 4px;"><span>${dict.lblTargetRoas}</span> <b>${targetVal.toFixed(2)}</b></div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 4px;"><span>${dict.roasImpas}</span> <b>${roasImpas.toFixed(2)}</b></div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 8px;"><span>${dict.lblRoasActual}</span> <b style="color: ${protectionColor};">${actualVal.toFixed(2)}</b></div>
               <hr style="border:none; border-top: 1px dashed #eee; margin: 8px 0;">
               <div style="display: flex; justify-content: space-between; align-items: center;">
-                <span>Status:</span> 
+                <span>${dict.lblStatus}</span> 
                 <b style="color: white; background: ${statusColor}; padding: 3px 8px; border-radius: 4px; font-size: 10px;">${currentStatusText.toUpperCase()}</b>
               </div>
             `;
@@ -501,18 +642,17 @@ function updateShopeeAdsDashboard() {
         const actualVal = parseShopeeNumber(roasActualCell.querySelector('.report-format-number')?.innerText, false);
 
         if (actualVal >= targetVal) {
-          statusBadge.innerText = "SEHAT";
+          statusBadge.innerText = dict.statusHealthy;
           statusBadge.style.backgroundColor = "#52c41a";
         } else if (actualVal > 0) {
-          statusBadge.innerText = "WASPADA";
+          statusBadge.innerText = dict.statusWarning;
           statusBadge.style.backgroundColor = "#faad14";
         } else {
-          statusBadge.innerText = "NO DATA";
+          statusBadge.innerText = dict.statusNoData;
           statusBadge.style.backgroundColor = "#ccc";
         }
       }
 
-      // --- BAGIAN D: STATUS BADGE BIAYA IKLAN & CPO ---
       if (costCell && orderCell) {
         let cpoBadge = costCell.querySelector('.cpo-status-badge');
 
@@ -539,44 +679,44 @@ function updateShopeeAdsDashboard() {
             let sisaMarginColor = sisaMargin >= 0 ? "#52c41a" : "#ff4d4f";
             let sisaMarginText = sisaMargin >= 0 ? `+Rp${formatRupiah(sisaMargin.toFixed(0))}` : `-Rp${formatRupiah(Math.abs(sisaMargin).toFixed(0))}`;
 
-            let statusText = "NO DATA";
+            let statusText = dict.statusNoData;
             let statusColor = "#ccc";
 
             if (jualVal === 0) {
-              statusText = "HARGA JUAL KOSONG";
+              statusText = dict.statusPriceEmpty;
               statusColor = "#888";
             } else if (costVal === 0) {
-              statusText = "BELUM ADA BIAYA";
+              statusText = dict.statusNoCostYet;
               statusColor = "#ccc";
             } else if (orderVal === 0 && costVal > 0) {
-              statusText = "BAHAYA (0 KONVERSI)";
+              statusText = dict.statusDanger0Conv;
               statusColor = "#ff4d4f";
             } else {
               if (cpoPercent <= cpoLimit.sehat) {
-                statusText = "SEHAT";
+                statusText = dict.statusHealthy;
                 statusColor = "#52c41a";
               } else if (cpoPercent <= cpoLimit.waspada) {
-                statusText = "WASPADA";
+                statusText = dict.statusWarning;
                 statusColor = "#faad14";
               } else {
-                statusText = "BAHAYA";
+                statusText = dict.statusDanger;
                 statusColor = "#ff4d4f";
               }
             }
 
             globalAnalysisTooltip.innerHTML = `
               <div style="font-weight: bold; font-size: 13px; margin-bottom: 10px; color: ${protectionColor}; border-bottom: 1px solid #f5f5f5; padding-bottom: 5px; display: flex; align-items: center; gap: 5px;">
-                <span>📈</span> Analisis Biaya Iklan (CPO)
+                <span>📈</span> ${dict.analysisCpo}
               </div>
-              <div style="display: flex; justify-content: space-between; margin-bottom: 4px;"><span>Biaya Iklan:</span> <b>Rp${formatRupiah(costVal.toFixed(0))}</b></div>
-              <div style="display: flex; justify-content: space-between; margin-bottom: 4px;"><span>Konversi (Pesanan):</span> <b>${orderVal}</b></div>
-              <div style="display: flex; justify-content: space-between; margin-bottom: 4px;"><span>Cost Per Order (CPO):</span> <b>Rp${formatRupiah(cpo.toFixed(0))}</b></div>
-              <div style="display: flex; justify-content: space-between; margin-bottom: 4px;"><span>Margin Produk:</span> <b>Rp${formatRupiah(marginVal.toFixed(0))}</b></div>
-              <div style="display: flex; justify-content: space-between; margin-bottom: 8px;"><span>Margin - CPO:</span> <b style="color: ${sisaMarginColor};">${sisaMarginText}</b></div>
-              <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 11px;"><span>Rasio thd Harga Jual:</span> <b style="color: ${statusColor};">${cpoPercent.toFixed(2)}%</b></div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 4px;"><span>${dict.lblAdCost}</span> <b>Rp${formatRupiah(costVal.toFixed(0))}</b></div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 4px;"><span>${dict.lblConversion}</span> <b>${orderVal}</b></div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 4px;"><span>${dict.lblCpo}</span> <b>Rp${formatRupiah(cpo.toFixed(0))}</b></div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 4px;"><span>${dict.lblProductMargin}</span> <b>Rp${formatRupiah(marginVal.toFixed(0))}</b></div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 8px;"><span>${dict.lblMarginCpo}</span> <b style="color: ${sisaMarginColor};">${sisaMarginText}</b></div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 11px;"><span>${dict.lblRatioPrice}</span> <b style="color: ${statusColor};">${cpoPercent.toFixed(2)}%</b></div>
               <hr style="border:none; border-top: 1px dashed #eee; margin: 8px 0;">
               <div style="display: flex; justify-content: space-between; align-items: center;">
-                <span>Status:</span> 
+                <span>${dict.lblStatus}</span> 
                 <b style="color: white; background: ${statusColor}; padding: 3px 8px; border-radius: 4px; font-size: 10px;">${statusText}</b>
               </div>
             `;
@@ -597,29 +737,28 @@ function updateShopeeAdsDashboard() {
         let cpo = orderVal > 0 ? costVal / orderVal : costVal;
         let cpoPercent = jualVal > 0 ? (cpo / jualVal) * 100 : 0;
 
-        let badgeText = "NO DATA";
+        let badgeText = dict.statusNoData;
         let badgeColor = "#ccc";
 
         if (jualVal === 0) {
-          badgeText = "HARGA JUAL?";
+          badgeText = dict.statusPriceEmpty2;
           badgeColor = "#888";
         } else if (costVal === 0) {
-          badgeText = "AMAN";
+          badgeText = dict.statusSafe;
           badgeColor = "#ccc";
         } else if (orderVal === 0 && costVal > 0) {
-          badgeText = "BAHAYA";
+          badgeText = dict.statusDanger;
           badgeColor = "#ff4d4f";
         } else {
-          if (cpoPercent <= cpoLimit.sehat) { badgeText = "SEHAT"; badgeColor = "#52c41a"; }
-          else if (cpoPercent <= cpoLimit.waspada) { badgeText = "WASPADA"; badgeColor = "#faad14"; }
-          else { badgeText = "BAHAYA"; badgeColor = "#ff4d4f"; }
+          if (cpoPercent <= cpoLimit.sehat) { badgeText = dict.statusHealthy; badgeColor = "#52c41a"; }
+          else if (cpoPercent <= cpoLimit.waspada) { badgeText = dict.statusWarning; badgeColor = "#faad14"; }
+          else { badgeText = dict.statusDanger; badgeColor = "#ff4d4f"; }
         }
 
         cpoBadge.innerText = badgeText;
         cpoBadge.style.backgroundColor = badgeColor;
       }
 
-      // --- BAGIAN E: STATUS BADGE IMPRESI (DILIHAT) ---
       if (impCell && orderCell) {
         let impBadge = impCell.querySelector('.imp-status-badge');
 
@@ -642,67 +781,67 @@ function updateShopeeAdsDashboard() {
             let cpmVal = impVal > 0 ? (costVal / impVal) * 1000 : 0;
             let orderPer1k = impVal > 0 ? (orderVal / impVal) * 1000 : 0;
 
-            let statusText = "NO DATA";
+            let statusText = dict.statusNoData;
             let statusColor = "#ccc";
             let subText = "";
 
             if (impVal === 0) {
-              statusText = "BELUM TAYANG";
+              statusText = dict.statusNotAired;
               statusColor = "#ccc";
             } else {
               if (orderPer1k >= itoLimit.sehat) {
-                statusText = "SEHAT";
+                statusText = dict.statusHealthy;
                 statusColor = "#52c41a";
-                subText = "(Profit & Stabil)";
+                subText = dict.subProfit;
               } else if (orderPer1k >= itoLimit.waspada && orderPer1k < itoLimit.sehat) {
-                statusText = "WASPADA";
+                statusText = dict.statusWarning;
                 statusColor = "#faad14";
-                subText = "(Untung Tipis / BEP)";
+                subText = dict.subBep;
               } else {
-                statusText = "BAHAYA";
+                statusText = dict.statusDanger;
                 statusColor = "#ff4d4f";
-                subText = "(Pemicu Boncos)";
+                subText = dict.subLoss;
               }
             }
 
             const marginVal = parseFloat(fixedRow.querySelector('.input-margin-field')?.value.replace(/\./g, "")) || 0;
             let targetCpm = orderPer1k * marginVal;
 
-            let cpmStatusText = "NO DATA";
+            let cpmStatusText = dict.statusNoData;
             let cpmStatusColor = "#ccc";
 
             if (marginVal === 0) {
-              cpmStatusText = "MARGIN KOSONG";
+              cpmStatusText = dict.statusMarginEmpty;
               cpmStatusColor = "#888";
             } else if (impVal > 0) {
               if (cpmVal < targetCpm) {
-                cpmStatusText = "SEHAT";
+                cpmStatusText = dict.statusHealthy;
                 cpmStatusColor = "#52c41a";
               } else {
-                cpmStatusText = "BAHAYA";
+                cpmStatusText = dict.statusDanger;
                 cpmStatusColor = "#ff4d4f";
               }
             }
 
             globalAnalysisTooltip.innerHTML = `
               <div style="font-weight: bold; font-size: 13px; margin-bottom: 10px; color: ${protectionColor}; border-bottom: 1px solid #f5f5f5; padding-bottom: 5px; display: flex; align-items: center; gap: 5px;">
-                <span>👁️</span> Analisis Konversi Tayangan
+                <span>👁️</span> ${dict.analysisImp}
               </div>
-              <div style="display: flex; justify-content: space-between; margin-bottom: 4px;"><span>Total Tayang (Imp):</span> <b>${formatRupiah(impVal)}</b></div>
-              <div style="display: flex; justify-content: space-between; margin-bottom: 4px;"><span>Total Order:</span> <b>${orderVal}</b></div>
-              <div style="display: flex; justify-content: space-between; margin-bottom: 4px;"><span>Order per 1K Tayang:</span> <b style="color: ${statusColor};">${orderPer1k.toFixed(2)}</b></div>
-              <div style="display: flex; justify-content: space-between; margin-bottom: 4px;"><span>Biaya per 1K Tayang (CPM):</span> <b>Rp${formatRupiah(cpmVal.toFixed(0))}</b></div>
-              <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 11px;"><span>Maks. CPM (Order/1K × Margin):</span> <b>Rp${formatRupiah(targetCpm.toFixed(0))}</b></div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 4px;"><span>${dict.lblTotalImp}</span> <b>${formatRupiah(impVal)}</b></div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 4px;"><span>${dict.lblTotalOrder}</span> <b>${orderVal}</b></div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 4px;"><span>${dict.lblOrder1k}</span> <b style="color: ${statusColor};">${orderPer1k.toFixed(2)}</b></div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 4px;"><span>${dict.lblCost1k}</span> <b>Rp${formatRupiah(cpmVal.toFixed(0))}</b></div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 11px;"><span>${dict.lblMaxCpm}</span> <b>Rp${formatRupiah(targetCpm.toFixed(0))}</b></div>
               <hr style="border:none; border-top: 1px dashed #eee; margin: 8px 0;">
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                <span>Status Imp to Order:</span> 
+                <span>${dict.lblStatusIto}</span> 
                 <div style="text-align: right;">
                   <div style="color: white; background: ${statusColor}; padding: 3px 8px; border-radius: 4px; font-size: 10px; font-weight: bold; display: inline-block;">${statusText}</div>
                   <div style="font-size: 9px; color: #888; margin-top: 4px;">${subText}</div>
                 </div>
               </div>
               <div style="display: flex; justify-content: space-between; align-items: center;">
-                <span>Status CPM:</span> 
+                <span>${dict.lblStatusCpm}</span> 
                 <div style="text-align: right;">
                   <div style="color: white; background: ${cpmStatusColor}; padding: 3px 8px; border-radius: 4px; font-size: 10px; font-weight: bold; display: inline-block;">${cpmStatusText}</div>
                 </div>
@@ -725,16 +864,16 @@ function updateShopeeAdsDashboard() {
 
         let orderPer1k = impVal > 0 ? (orderVal / impVal) * 1000 : 0;
 
-        let badgeText = "NO DATA";
+        let badgeText = dict.statusNoData;
         let badgeColor = "#ccc";
 
         if (impVal === 0) {
-          badgeText = "0 TAYANG";
+          badgeText = dict.status0Aired;
           badgeColor = "#ccc";
         } else {
-          if (orderPer1k >= itoLimit.sehat) { badgeText = "SEHAT"; badgeColor = "#52c41a"; }
-          else if (orderPer1k >= itoLimit.waspada && orderPer1k < itoLimit.sehat) { badgeText = "WASPADA"; badgeColor = "#faad14"; }
-          else { badgeText = "BAHAYA"; badgeColor = "#ff4d4f"; }
+          if (orderPer1k >= itoLimit.sehat) { badgeText = dict.statusHealthy; badgeColor = "#52c41a"; }
+          else if (orderPer1k >= itoLimit.waspada && orderPer1k < itoLimit.sehat) { badgeText = dict.statusWarning; badgeColor = "#faad14"; }
+          else { badgeText = dict.statusDanger; badgeColor = "#ff4d4f"; }
         }
 
         impBadge.innerText = badgeText;

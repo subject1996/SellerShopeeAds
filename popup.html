@@ -111,7 +111,15 @@
 
   <div class="container">
     <div class="status-row">
-      <span class="status-label">Extension Status</span>
+      <span class="status-label" id="langLabel">Language / Bahasa</span>
+      <select id="langSelect" style="font-size: 10px; padding: 2px; border-radius: 3px; border: 1px solid #ddd; outline: none;">
+        <option value="id">Bahasa Indonesia</option>
+        <option value="en">English</option>
+      </select>
+    </div>
+
+    <div class="status-row">
+      <span class="status-label" id="lblExtStatus">Extension Status</span>
       <label class="switch">
         <input type="checkbox" id="toggleStatus">
         <span class="slider"></span>
@@ -119,7 +127,7 @@
     </div>
 
     <div class="status-row">
-      <span class="status-label" style="color: var(--secondary);">Hide Inputs Info</span>
+      <span class="status-label" id="lblHideInputs" style="color: var(--secondary);">Hide Inputs Info</span>
       <label class="switch hide-switch">
         <input type="checkbox" id="hideInputs">
         <span class="slider"></span>
@@ -127,7 +135,7 @@
     </div>
 
     <div class="status-row">
-      <span class="status-label" style="color: var(--secondary);">Hide Export CSV</span>
+      <span class="status-label" id="lblHideCsv" style="color: var(--secondary);">Hide Export CSV</span>
       <label class="switch hide-switch">
         <input type="checkbox" id="hideExportCSV">
         <span class="slider"></span>
@@ -136,35 +144,35 @@
 
     <div class="btn-settings" id="btnSettings">⚙️ ROAS Strategy Settings</div>
     <div id="settingsContent">
-      <div class="input-row"><label>Sangat Agresif</label><input type="number" id="m_s_agresif" step="0.1" placeholder="1.5"></div>
-      <div class="input-row"><label>Agresif</label><input type="number" id="m_agresif" step="0.1" placeholder="2.0"></div>
-      <div class="input-row"><label>Moderat</label><input type="number" id="m_moderat" step="0.1" placeholder="2.5"></div>
-      <div class="input-row"><label>Konservatif</label><input type="number" id="m_konservatif" step="0.1" placeholder="3.0"></div>
-      <div class="input-row"><label>Saving</label><input type="number" id="m_saving" step="0.1" placeholder="3.5"></div>
+      <div class="input-row"><label id="lblRoasSa">Sangat Agresif</label><input type="number" id="m_s_agresif" step="0.1" placeholder="1.5"></div>
+      <div class="input-row"><label id="lblRoasA">Agresif</label><input type="number" id="m_agresif" step="0.1" placeholder="2.0"></div>
+      <div class="input-row"><label id="lblRoasM">Moderat</label><input type="number" id="m_moderat" step="0.1" placeholder="2.5"></div>
+      <div class="input-row"><label id="lblRoasK">Konservatif</label><input type="number" id="m_konservatif" step="0.1" placeholder="3.0"></div>
+      <div class="input-row"><label id="lblRoasS">Saving</label><input type="number" id="m_saving" step="0.1" placeholder="3.5"></div>
     </div>
 
     <div class="btn-settings" id="btnSettingsCPO" style="border-top: none; padding-top: 2px;">⚙️ CPO Strategy Settings</div>
     <div id="settingsContentCPO">
-      <div class="input-row"><label>Batas Sehat (≤ %)</label><input type="number" id="cpo_sehat" step="1" placeholder="15"></div>
-      <div class="input-row"><label>Batas Waspada (≤ %)</label><input type="number" id="cpo_waspada" step="1" placeholder="25"></div>
-      <div style="font-size: 8px; color: #aaa; text-align: center; margin-top: -2px;">*Lebih dari Batas Waspada = BAHAYA</div>
+      <div class="input-row"><label id="lblCpoSehat">Batas Sehat (≤ %)</label><input type="number" id="cpo_sehat" step="1" placeholder="15"></div>
+      <div class="input-row"><label id="lblCpoWaspada">Batas Waspada (≤ %)</label><input type="number" id="cpo_waspada" step="1" placeholder="25"></div>
+      <div id="lblCpoDesc" style="font-size: 8px; color: #aaa; text-align: center; margin-top: -2px;">*Lebih dari Batas Waspada = BAHAYA</div>
     </div>
 
     <div class="btn-settings" id="btnSettingsITO" style="border-top: none; padding-top: 2px;">⚙️ Impression-to-Order Settings</div>
     <div id="settingsContentITO">
-      <div class="input-row"><label>Batas Sehat (≥ Order/1K)</label><input type="number" id="ito_sehat" step="0.1" placeholder="5"></div>
-      <div class="input-row"><label>Batas Waspada (≥ Order/1K)</label><input type="number" id="ito_waspada" step="0.1" placeholder="2"></div>
-      <div style="font-size: 8px; color: #aaa; text-align: center; margin-top: -2px;">*Kurang dari Batas Waspada = BAHAYA</div>
+      <div class="input-row"><label id="lblItoSehat">Batas Sehat (≥ Order/1K)</label><input type="number" id="ito_sehat" step="0.1" placeholder="5"></div>
+      <div class="input-row"><label id="lblItoWaspada">Batas Waspada (≥ Order/1K)</label><input type="number" id="ito_waspada" step="0.1" placeholder="2"></div>
+      <div id="lblItoDesc" style="font-size: 8px; color: #aaa; text-align: center; margin-top: -2px;">*Kurang dari Batas Waspada = BAHAYA</div>
     </div>
 
     <div class="backup-section" id="backupContent">
-      <div class="backup-desc">📊 Bulk Edit Data Produk (CSV)</div>
+      <div class="backup-desc" id="lblBackupDesc">📊 Bulk Edit Data Produk (CSV)</div>
       <div class="backup-row">
         <div class="btn-backup" id="btnExport">📥 Export CSV</div>
         <div class="btn-backup" id="btnImport">📤 Import CSV</div>
         <input type="file" id="fileImport" accept=".csv" style="display: none;">
       </div>
-      <div style="font-size: 8px; color: #ff4d4f; text-align: center; margin-top: 8px; line-height: 1.3;">
+      <div id="lblBackupWarn" style="font-size: 8px; color: #ff4d4f; text-align: center; margin-top: 8px; line-height: 1.3;">
         <b>⚠️ PENTING:</b> Jangan gunakan tanda koma (,) pada angka nominal di Excel agar format CSV tidak rusak.
       </div>
     </div>

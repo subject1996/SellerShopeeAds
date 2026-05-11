@@ -1,14 +1,28 @@
 {
   "manifest_version": 3,
-  "name": "Shopee ROAS & HPP Tracker",
-  "version": "1.2",
+  "name": "Shopee ROAS & Profit Maximizer",
+  "description": "The ultimate tool for Shopee Sellers! Track real-time Ads ROAS, Profit Margin, CPO, and get automated performance insights.",
+  "version": "2.0",
   "permissions": ["storage"],
   "action": {
     "default_popup": "popup.html"
   },
   "content_scripts": [
     {
-      "matches": ["https://seller.shopee.co.id/*"],
+      "matches": [
+        "https://seller.shopee.co.id/*",
+        "https://seller.shopee.com.my/*",
+        "https://seller.shopee.sg/*",
+        "https://seller.shopee.co.th/*",
+        "https://seller.shopee.vn/*",
+        "https://seller.shopee.ph/*",
+        "https://seller.shopee.tw/*",
+        "https://seller.shopee.com.br/*",
+        "https://seller.shopee.com.mx/*",
+        "https://seller.shopee.com.co/*",
+        "https://seller.shopee.cl/*",
+        "https://seller.shopee.com.ar/*"
+      ],
       "js": ["content.js"]
     }
   ]
