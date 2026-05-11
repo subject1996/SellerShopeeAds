@@ -1,86 +1,87 @@
 # 🛒 Shopee Ads Tracker - Chrome Extension
 
-Ekstensi Google Chrome khusus untuk **Seller Shopee** dan **Advertiser** yang berfungsi menyulap *dashboard* Shopee Ads bawaan menjadi pusat analisis data yang lebih cerdas, *real-time*, dan mendalam. 
+A specialized Google Chrome extension for **Shopee Sellers** and **Advertisers** designed to transform the standard Shopee Ads dashboard into a smart, real-time, and in-depth data analysis hub.
 
-Membantu pengiklan untuk segera mengetahui apakah sebuah kampanye iklan sedang menghasilkan keuntungan (*Profit*), sekadar balik modal (*BEP*), atau justru merugi (*Boncos*) secara otomatis, tanpa perlu repot menghitung manual menggunakan kalkulator atau Excel.
+This tool helps advertisers instantly identify whether an ad campaign is generating **Profit**, reaching **Break-Even (BEP)**, or resulting in a **Loss**, automatically—eliminating the need for manual calculations in Excel or calculators.
 
 ---
 
-## ✨ Fitur Unggulan & Manfaat
+## ✨ Key Features & Benefits
 
-1. **📊 Manajemen OPEX, Harga Jual, dan Margin**
-   Input struktur biaya (OPEX, Harga Jual, Margin) langsung di bawah nama produk pada halaman Shopee Ads. Data tersimpan otomatis secara lokal di *browser* Anda (*Local Storage*).
+1. **📊 OPEX, Selling Price, and Margin Management**
+   Input your cost structure (OPEX, Selling Price, Margin) directly under the product name on the Shopee Ads page. Data is automatically saved locally in your browser (**Local Storage**).
    <img width="405" height="47" alt="image" src="https://github.com/user-attachments/assets/cb9f658a-1010-4ff0-adef-875b94f4435c" />
 
-3. **🎯 Strategi Target ROAS Otomatis**
-   Menghitung **ROAS Impas** (Batas Balik Modal) dan memberikan rekomendasi Target ROAS secara instan berdasarkan profil risiko Anda (*Saving, Konservatif, Moderat, Agresif, Sangat Agresif*).
+2. **🎯 Automated Target ROAS Strategy**
+   Instantly calculates the **Break-even ROAS** and provides Target ROAS recommendations based on your risk profile (*Saving, Conservative, Moderate, Aggressive, Hyper-Aggressive*).
    <img width="322" height="293" alt="image" src="https://github.com/user-attachments/assets/f86f2f74-f60c-4641-a3e7-e90105731759" />
 
-4. **🚦 Indikator Kesehatan ROAS**
-   Melabeli ROAS aktual dengan warna: Hijau (**BAGUS**) jika memenuhi target, atau Merah (**KURANG**) jika di bawah target untuk pengambilan keputusan optimasi yang lebih cepat.
+3. **🚦 ROAS Health Indicators**
+   Labels actual ROAS with color-coded status: Green (**GOOD**) if it meets the target, or Red (**POOR**) if it falls below the target for faster optimization decision-making.
    <img width="311" height="227" alt="image" src="https://github.com/user-attachments/assets/0a4ca974-ae5c-4946-9d26-32b622e8a225" />
 
-5. **📉 Analisis Biaya Iklan & CPO (Cost Per Order)**
-   Menghitung metrik krusial untuk mencegah kebangkrutan:
-   * Menghitung nilai CPO dan persentasenya terhadap Harga Jual.
-   * Menghitung **Profit Aktual (Margin - CPO)**.
-   * Label status otomatis (🟢 SEHAT, 🟡 WASPADA, 🔴 BAHAYA) yang batas persentasenya bisa disesuaikan.
+4. **📉 Ad Cost & CPO (Cost Per Order) Analysis**
+   Calculates crucial metrics to prevent budget bleeding:
+   * Calculates CPO value and its percentage relative to the Selling Price.
+   * Calculates **Actual Profit (Margin - CPO)**.
+   * Automatic status labels (🟢 HEALTHY, 🟡 WARNING, 🔴 CRITICAL) with customizable percentage thresholds.
    <img width="353" height="343" alt="image" src="https://github.com/user-attachments/assets/a86fcd5c-b32b-4a16-88f5-b20a3c6e2d4c" />
 
-6. **👁️ Analisis Kualitas Tayangan (CTR to Conversion)**
-   Mendiagnosis masalah tayangan iklan dengan menghitung rasio **Order per 1.000 Tayang**. Dilengkapi label status untuk melihat efektivitas algoritma iklan.
+5. **👁️ Impression Quality Analysis (CTR to Conversion)**
+   Diagnoses ad creative/relevancy issues by calculating the **Order per 1,000 Views** ratio. Includes status labels to evaluate the effectiveness of the ad algorithm.
    <img width="305" height="343" alt="image" src="https://github.com/user-attachments/assets/4d85daa2-376b-4ed5-be26-f6ceac4e3919" />
 
-7. **📋 Generator Laporan 1-Klik (Tombol SUMMARY)**
-   Mengompilasi seluruh data performa iklan suatu produk menjadi format teks ringkas dan rapi ke dalam *clipboard*, siap untuk di-*paste* ke WhatsApp atau grup pelaporan.
-8. **💾 Backup & Restore System**
-   Simpan (*Export*) atau muat ulang (*Import*) seluruh konfigurasi strategi dan data OPEX/Margin ke dalam file `.csv` dengan mudah.
+6. **📋 1-Click Report Generator (SUMMARY Button)**
+   Compiles all ad performance data for a product into a concise, neatly formatted text. It's copied to your clipboard instantly, ready to be pasted into WhatsApp or reporting groups.
+
+7. **💾 Backup & Restore System**
+   Easily **Export** or **Import** your entire strategy configuration and OPEX/Margin data using `.csv` files.
 
 ---
 
-## 🛠️ Cara Instalasi (Local / Developer Mode)
+## 🛠️ Installation (Local / Developer Mode)
 
-Karena ekstensi ini belum (atau sedang dalam proses) dirilis di Chrome Web Store, Anda dapat menginstalnya secara manual di *browser* Chrome atau Edge (berbasis Chromium) Anda:
+Since this extension is in development (not yet on the Chrome Web Store), you can install it manually on Chrome or Edge (Chromium-based):
 
 1. **Download Repository**
-   Klik tombol `Code` hijau di repositori ini, lalu pilih **Download ZIP**. (Atau *clone* via terminal: `git clone https://github.com/subject1996/SellerShopeeAds.git`)
-2. **Ekstrak File**
-   Ekstrak file `.zip` yang baru saja diunduh ke dalam sebuah folder (misal: `Shopee-Tracker-Ext`).
-3. **Buka Halaman Ekstensi Chrome**
-   Buka Google Chrome, ketik `chrome://extensions/` di *address bar*, lalu tekan Enter.
-4. **Aktifkan Developer Mode**
-   Di pojok kanan atas halaman, aktifkan (*toggle on*) opsi **Developer mode** (Mode Pengembang).
-5. **Load Ekstensi**
-   Klik tombol **Load unpacked** (Muat yang belum dibongkar) di pojok kiri atas. Pilih folder tempat Anda mengekstrak file tadi (folder yang berisi file `manifest.json`).
-6. **Selesai! 🎉**
-   Ekstensi sudah aktif. Ikon ekstensi (S) akan muncul di bilah atas *browser* Anda. Pastikan untuk menekan ikon *Pin* agar ekstensi selalu terlihat.
+   Click the green `Code` button in this repository and select **Download ZIP**. (Or clone via terminal: `git clone https://github.com/subject1996/SellerShopeeAds.git`)
+2. **Extract Files**
+   Extract the downloaded `.zip` file into a folder (e.g., `Shopee-Tracker-Ext`).
+3. **Open Chrome Extensions Page**
+   Open Google Chrome, type `chrome://extensions/` in the address bar, and press Enter.
+4. **Enable Developer Mode**
+   In the top right corner, toggle **Developer mode** to **ON**.
+5. **Load Extension**
+   Click the **Load unpacked** button in the top left. Select the folder where you extracted the files (the one containing the `manifest.json` file).
+6. **Done! 🎉**
+   The extension is now active. The extension icon (S) will appear in your browser's toolbar. Make sure to **Pin** it for easy access.
 
 ---
 
-## 📖 Cara Penggunaan
+## 📖 How to Use
 
-1. Buka *dashboard* **Shopee Ads** Anda seperti biasa.
-2. Anda akan melihat kolom *input* baru (**OPEX, Jual, Margin**) muncul di setiap baris produk. Isi angka-angka tersebut sesuai dengan profil produk Anda.
-3. Arahkan *kursor (hover)* ke *badge/label* baru yang muncul di samping angka ROAS, Biaya Iklan, dan Dilihat untuk memunculkan **Pop-up Rincian Analisis**.
-4. Klik **Ikon Ekstensi** di pojok kanan atas *browser* untuk:
-   * Mematikan/menyalakan fitur ekstensi.
-   * Menyembunyikan kolom input (agar *dashboard* lebih rapi saat mau di-*screenshot*).
-   * Menyesuaikan parameter perkalian **Strategi ROAS**.
-   * Menyesuaikan batas persentase **Strategi CPO** (Batas Sehat & Waspada).
-   * Melakukan ekspor/impor data (*Backup*).
+1. Open your **Shopee Ads** dashboard as usual.
+2. You will see new input fields (**OPEX, Price, Margin**) appearing in each product row. Enter the figures according to your product profile.
+3. **Hover** your cursor over the new badges/labels next to ROAS, Ad Cost, and Views to trigger the **Analysis Detail Pop-up**.
+4. Click the **Extension Icon** in the top right of your browser to:
+   * Toggle the extension features on/off.
+   * Hide input columns (for a cleaner look when taking screenshots).
+   * Adjust **ROAS Strategy** multipliers.
+   * Customize **CPO Strategy** percentage thresholds (Healthy & Warning limits).
+   * Perform data **Backup/Restore**.
 
 ---
 
-## 🔒 Privasi Data
-Ekstensi ini murni berjalan di sisi klien (*client-side*). Seluruh data input Anda (Harga, Margin, OPEX) disimpan secara aman di `chrome.storage.local` *browser* Anda sendiri. Ekstensi ini **TIDAK** mengirimkan data finansial, data login, atau data iklan Anda ke server eksternal mana pun.
+## 🔒 Data Privacy
+This extension runs entirely **client-side**. All your input data (Price, Margin, OPEX) is stored securely within your own browser's `chrome.storage.local`. This extension **DOES NOT** send your financial data, login credentials, or ad data to any external servers.
 
 ---
 
 ## 👨‍💻 Author
 
-Dikembangkan oleh **Fitroh Satrio**.
+Developed by **Fitroh Satrio**.
 
-Jika Anda menemukan *bug*, kendala, atau memiliki saran fitur baru, silakan buat *Issue* di repositori ini. *Pull Request* juga sangat dipersilakan!
+If you find any bugs, issues, or have feature suggestions, please create an **Issue** in this repository. **Pull Requests** are also very welcome!
 
 ---
-*Disclaimer: Ekstensi ini adalah alat pihak ketiga (Third-party tool) dan tidak memiliki afiliasi resmi dengan Shopee.*
+*Disclaimer: This extension is a third-party tool and is not officially affiliated with Shopee.*
